@@ -6,9 +6,13 @@ public class UIController : MonoBehaviour {
 
 	public GameObject startCanvas;
 	public GameObject firstPersonController;
+	public Camera firstPersonCamera;
+	public Camera mapCamera;
+	public GameObject locationMarker;
 	// Use this for initialization
 	void Start () {
 		firstPersonController.SetActive (false);
+		locationMarker.SetActive (false);
 	}
 	
 	// Update is called once per frame
@@ -19,5 +23,17 @@ public class UIController : MonoBehaviour {
 		}
 		if (Input.GetKeyDown("escape"))
 			Application.Quit();
+		
+		if (Input.GetKeyDown ("m")) {
+			if (mapCamera.enabled == false) {
+				firstPersonCamera.enabled = false;
+				mapCamera.enabled = true;
+				locationMarker.SetActive (true);
+			} else {
+				mapCamera.enabled = false;
+				firstPersonCamera.enabled = true;
+				locationMarker.SetActive (false);
+			}
+		}
 	}
 }
