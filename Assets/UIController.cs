@@ -13,6 +13,8 @@ public class UIController : MonoBehaviour {
 	void Start () {
 		firstPersonController.SetActive (false);
 		locationMarker.SetActive (false);
+		mapCamera.enabled = false;
+		firstPersonCamera.enabled = true;
 	}
 	
 	// Update is called once per frame
