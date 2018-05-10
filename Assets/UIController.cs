@@ -9,13 +9,10 @@ public class UIController : MonoBehaviour {
 	public Camera firstPersonCamera;
 	public Camera mapCamera;
 	public GameObject locationMarker;
-    public GameObject textBox;
-    public GameObject ancientRunes;
 	// Use this for initialization
 	void Start () {
 		firstPersonController.SetActive (false);
 		locationMarker.SetActive (false);
-        textBox.SetActive(false);
 		mapCamera.enabled = false;
 		firstPersonCamera.enabled = true;
 	}
@@ -40,22 +37,5 @@ public class UIController : MonoBehaviour {
 				locationMarker.SetActive (false);
 			}
 		}
-
-        TextInteraction();
 	}
-
-    void TextInteraction() {
-        if (firstPersonController)
-        {
-            float dist = Vector3.Distance(firstPersonController.transform.position, ancientRunes.transform.position);
-            if (dist <= 50)
-            {
-                textBox.SetActive(true);
-            }
-            else
-            {
-                textBox.SetActive(false);
-            }
-        }
-    }
 }
