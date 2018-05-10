@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIController : MonoBehaviour {
 
@@ -9,14 +10,21 @@ public class UIController : MonoBehaviour {
 	public Camera firstPersonCamera;
 	public Camera mapCamera;
 	public GameObject locationMarker;
-    public GameObject ancientRunes;
-    public GameObject textBox;
+    public GameObject objective1;
+	public GameObject objective2;
+	public GameObject objective3;
+//	public GameObject objective4;
+//	public GameObject objective5;
+//	public GameObject objective6;
+//	public GameObject objective7;
+	public GameObject dialogueBox;
+	public Text dialogueText;
 
 	// Use this for initialization
 	void Start () {
 		firstPersonController.SetActive (false);
 		locationMarker.SetActive (false);
-        textBox.SetActive(false);
+		dialogueBox.SetActive(false);
 		mapCamera.enabled = false;
 		firstPersonCamera.enabled = true;
 	}
@@ -44,14 +52,45 @@ public class UIController : MonoBehaviour {
 
         if (firstPersonController)
         {
-            float dist = Vector3.Distance(firstPersonCamera.transform.position, ancientRunes.transform.position);
-            if(dist <= 75)
+            float dist1 = Vector3.Distance(firstPersonCamera.transform.position, objective1.transform.position);
+			float dist2 = Vector3.Distance(firstPersonCamera.transform.position, objective2.transform.position);
+			float dist3 = Vector3.Distance(firstPersonCamera.transform.position, objective3.transform.position);
+//			float dist4 = Vector3.Distance(firstPersonCamera.transform.position, objective4.transform.position);
+//			float dist5 = Vector3.Distance(firstPersonCamera.transform.position, objective5.transform.position);
+//			float dist6 = Vector3.Distance(firstPersonCamera.transform.position, objective6.transform.position);
+//			float dist7 = Vector3.Distance(firstPersonCamera.transform.position, objective7.transform.position);
+            if(dist1 <= 25)
             {
-                textBox.SetActive(true);
-            }
+				dialogueBox.SetActive(true);
+				dialogueText.text = "Objective 1 Nearby";
+            } 
+			else if(dist2 <= 25){
+				dialogueBox.SetActive(true);
+				dialogueText.text = "Objective 2 Nearby";
+			}
+			else if(dist3 <= 25){
+				dialogueBox.SetActive(true);
+				dialogueText.text = "Objective 3 Nearby";
+			}
+//			else if(dist4 <= 25){
+//				dialogueBox.SetActive(true);
+//				dialogueText.text = "Objective 4 Nearby";
+//			}
+//			else if(dist5 <= 25){
+//				dialogueBox.SetActive(true);
+//				dialogueText.text = "Objective 5 Nearby";
+//			}
+//			else if(dist6 <= 25){
+//				dialogueBox.SetActive(true);
+//				dialogueText.text = "Objective 6 Nearby";
+//			}
+//			else if(dist7 <= 25){
+//				dialogueBox.SetActive(true);
+//				dialogueText.text = "Objective 7 Nearby";
+//			}
             else
             {
-                textBox.SetActive(false);
+				dialogueBox.SetActive(false);
             }
         }
 	}
