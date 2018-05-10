@@ -648,7 +648,7 @@ PlayerSettings:
   apiCompatibilityLevel: 2
   cloudProjectId: 1340265d-8b26-438f-a306-4d3d1562c20a
   projectName: MysteryTown
-  organizationId: tschannenmatt
+  organizationId: mysterytown
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0
