@@ -31,6 +31,9 @@ public class UIController : MonoBehaviour {
 	public GameObject endGameBox;
 	public Text dialogueText;
 	public Text progressText;
+	public float startTime;
+	public float elapsedTime;
+	//private GUIStyle guiStyle = new GUIStyle();
 
 	// Use this for initialization
 	void Start () {
@@ -40,19 +43,26 @@ public class UIController : MonoBehaviour {
 		mapCamera.enabled = false;
 		firstPersonCamera.enabled = true;
 		progressBox.SetActive (false);
+		startTime = 0;
+		elapsedTime = 0;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
 		if (objectiveCount < 7) {
 			progressText.text = "Supplies needed: " + (7 - objectiveCount).ToString ();
 		} else {
 			progressText.text = "Get to the boat!";
 		}
-		if (Input.GetKeyDown ("space")) {
+		if (Input.GetKeyDown ("space") && startTime == 0) {
 			startCanvas.SetActive (false);
 			firstPersonController.SetActive (true);
 			progressBox.SetActive (true);
+			startTime = Time.time;
+		}
+		if (startTime != 0) {
+			elapsedTime = Time.time - startTime;
 		}
 		if (Input.GetKeyDown("escape"))
 			Application.Quit();
@@ -87,6 +97,7 @@ public class UIController : MonoBehaviour {
 					if (Input.GetKeyDown ("e")) {
 						endGameBox.SetActive (true);
 						firstPersonController.SetActive (false);
+						startTime = 0;
 					}
 				}
 			}
@@ -180,5 +191,11 @@ public class UIController : MonoBehaviour {
 				dialogueBox.SetActive(false);
             }
         }
+			
 	}
+
+	void OnGUI() {
+		GUI.Label (new Rect (10, 10, 200, 100), Mathf.Round(elapsedTime).ToString());
+	}
+
 }
