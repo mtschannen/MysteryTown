@@ -14,14 +14,14 @@ public class UIController : MonoBehaviour {
 	public GameObject boat;
 	public GameObject objective1;
 	public GameObject objective2;
-//	public GameObject objective3;
+	public GameObject objective3;
 //	public GameObject objective4;
 //	public GameObject objective5;
 //	public GameObject objective6;
 //	public GameObject objective7;
 	public GameObject objective1Loaded;
 	public GameObject objective2Loaded;
-//	public GameObject objective3Loaded;
+	public GameObject objective3Loaded;
 	//	public GameObject objective4Loaded;
 	//	public GameObject objective5Loaded;
 	//	public GameObject objective6Loaded;
@@ -43,7 +43,11 @@ public class UIController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		progressText.text = "Supplies needed: " + (7 - objectiveCount).ToString();
+		if (objectiveCount < 7) {
+			progressText.text = "Supplies needed: " + (7 - objectiveCount).ToString ();
+		} else {
+			progressText.text = "You have enough supplies, get to the boat!";
+		}
 		if (Input.GetKeyDown ("space")) {
 			startCanvas.SetActive (false);
 			firstPersonController.SetActive (true);
@@ -69,7 +73,7 @@ public class UIController : MonoBehaviour {
 			float distBoat = Vector3.Distance(firstPersonCamera.transform.position, boat.transform.position);
             float dist1 = Vector3.Distance(firstPersonCamera.transform.position, objective1.transform.position);
 			float dist2 = Vector3.Distance(firstPersonCamera.transform.position, objective2.transform.position);
-//			float dist3 = Vector3.Distance(firstPersonCamera.transform.position, objective3.transform.position);
+			float dist3 = Vector3.Distance(firstPersonCamera.transform.position, objective3.transform.position);
 //			float dist4 = Vector3.Distance(firstPersonCamera.transform.position, objective4.transform.position);
 //			float dist5 = Vector3.Distance(firstPersonCamera.transform.position, objective5.transform.position);
 //			float dist6 = Vector3.Distance(firstPersonCamera.transform.position, objective6.transform.position);
@@ -109,17 +113,18 @@ public class UIController : MonoBehaviour {
 					}
 				}
 			}
-//			else if(dist3 <= 10 && objective3.activeInHierarchy == true){
-//				dialogueBox.SetActive(true);
-//				dialogueText.text = "Objective 1 Nearby.";
-//				if (dist3 <= 2.5) {
-//					dialogueText.text = "Press E to collect resource.";
-//					if (Input.GetKeyDown ("e")) {
-//						objective3.SetActive (false);
-//						objective3Loaded.SetActive (true);
-//					}
-//				}
-//			}
+			else if(dist3 <= 15 && objective3.activeInHierarchy == true){
+				dialogueBox.SetActive(true);
+				dialogueText.text = "Supplies nearby.";
+				if (dist3 <= 2.5) {
+					dialogueText.text = "Press E to collect resource.";
+					if (Input.GetKeyDown ("e")) {
+						objective3.SetActive (false);
+						objective3Loaded.SetActive (true);
+						objectiveCount++;
+					}
+				}
+			}
 //			else if(dist4 <= 25){
 //				dialogueBox.SetActive(true);
 //				dialogueText.text = "Objective 4 Nearby";
