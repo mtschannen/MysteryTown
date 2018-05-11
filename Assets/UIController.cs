@@ -31,6 +31,7 @@ public class UIController : MonoBehaviour {
 	public GameObject endGameBox;
 	public Text dialogueText;
 	public Text progressText;
+	public Text timeText;
 	public float startTime;
 	public float elapsedTime;
 	//private GUIStyle guiStyle = new GUIStyle();
@@ -95,7 +96,10 @@ public class UIController : MonoBehaviour {
 				if (objectiveCount >= 7) {
 					dialogueText.text = "You have enough resources, press E to cast off!";
 					if (Input.GetKeyDown ("e")) {
+						timeText.text = "Your time: " + elapsedTime;
 						endGameBox.SetActive (true);
+						progressBox.SetActive (false);
+						dialogueBox.SetActive (false);
 						firstPersonController.SetActive (false);
 						startTime = 0;
 					}

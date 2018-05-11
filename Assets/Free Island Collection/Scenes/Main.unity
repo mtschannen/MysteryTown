@@ -3139,7 +3139,7 @@ GameObject:
   - component: {fileID: 322161932}
   - component: {fileID: 322161931}
   m_Layer: 5
-  m_Name: ProgressText (1)
+  m_Name: Time
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4403,7 +4403,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &464431729
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15697,6 +15697,9 @@ MonoBehaviour:
   endGameBox: {fileID: 464431728}
   dialogueText: {fileID: 999422597}
   progressText: {fileID: 651989729}
+  timeText: {fileID: 322161931}
+  startTime: 0
+  elapsedTime: 0
 --- !u!4 &1770808671
 Transform:
   m_ObjectHideFlags: 0
