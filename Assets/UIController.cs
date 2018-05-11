@@ -10,8 +10,9 @@ public class UIController : MonoBehaviour {
 	public Camera firstPersonCamera;
 	public Camera mapCamera;
 	public GameObject locationMarker;
+	public int objectiveCount = 0;
 	public GameObject boat;
-    public GameObject objective1;
+	public GameObject objective1;
 	public GameObject objective2;
 	public GameObject objective3;
 //	public GameObject objective4;
@@ -63,20 +64,41 @@ public class UIController : MonoBehaviour {
 //			float dist7 = Vector3.Distance(firstPersonCamera.transform.position, objective7.transform.position);
 			if(distBoat <= 10){
 				dialogueBox.SetActive(true);
-				dialogueText.text = "Boat Nearby";
+				dialogueText.text = "Collect more resources before you leave!";
+				if (Input.GetKeyDown ("e") && objectiveCount >= 7) {
+					//playerwins
+				}
 			}
-            else if(dist1 <= 25)
+			else if(dist1 <= 10 && objective1.activeInHierarchy == true)
             {
 				dialogueBox.SetActive(true);
-				dialogueText.text = "Objective 1 Nearby";
+				dialogueText.text = "Objective 1 Nearby.";
+				if (dist1 <= 2.5) {
+					dialogueText.text = "Press E to collect resource.";
+					if (Input.GetKeyDown ("e")) {
+						objective1.SetActive (false);
+					}
+				}
             } 
-			else if(dist2 <= 25){
+			else if(dist2 <= 10 && objective2.activeInHierarchy == true){
 				dialogueBox.SetActive(true);
-				dialogueText.text = "Objective 2 Nearby";
+				dialogueText.text = "Objective 1 Nearby.";
+				if (dist2 <= 2.5) {
+					dialogueText.text = "Press E to collect resource.";
+					if (Input.GetKeyDown ("e")) {
+						objective2.SetActive (false);
+					}
+				}
 			}
-			else if(dist3 <= 25){
+			else if(dist3 <= 10 && objective3.activeInHierarchy == true){
 				dialogueBox.SetActive(true);
-				dialogueText.text = "Objective 3 Nearby";
+				dialogueText.text = "Objective 1 Nearby.";
+				if (dist3 <= 2.5) {
+					dialogueText.text = "Press E to collect resource.";
+					if (Input.GetKeyDown ("e")) {
+						objective3.SetActive (false);
+					}
+				}
 			}
 //			else if(dist4 <= 25){
 //				dialogueBox.SetActive(true);
