@@ -10,6 +10,7 @@ public class UIController : MonoBehaviour {
 	public Camera firstPersonCamera;
 	public Camera mapCamera;
 	public GameObject locationMarker;
+	public GameObject boat;
     public GameObject objective1;
 	public GameObject objective2;
 	public GameObject objective3;
@@ -52,6 +53,7 @@ public class UIController : MonoBehaviour {
 
         if (firstPersonController)
         {
+			float distBoat = Vector3.Distance(firstPersonCamera.transform.position, boat.transform.position);
             float dist1 = Vector3.Distance(firstPersonCamera.transform.position, objective1.transform.position);
 			float dist2 = Vector3.Distance(firstPersonCamera.transform.position, objective2.transform.position);
 			float dist3 = Vector3.Distance(firstPersonCamera.transform.position, objective3.transform.position);
@@ -59,7 +61,11 @@ public class UIController : MonoBehaviour {
 //			float dist5 = Vector3.Distance(firstPersonCamera.transform.position, objective5.transform.position);
 //			float dist6 = Vector3.Distance(firstPersonCamera.transform.position, objective6.transform.position);
 //			float dist7 = Vector3.Distance(firstPersonCamera.transform.position, objective7.transform.position);
-            if(dist1 <= 25)
+			if(distBoat <= 10){
+				dialogueBox.SetActive(true);
+				dialogueText.text = "Boat Nearby";
+			}
+            else if(dist1 <= 25)
             {
 				dialogueBox.SetActive(true);
 				dialogueText.text = "Objective 1 Nearby";
